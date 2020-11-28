@@ -133,6 +133,12 @@ namespace UserRegistrationTest
             bool result = validations.passWord_Validation("");
             Assert.IsFalse(result);
         }
+        [TestMethod]
+        public void givenPassWord_WhenWithOneAtleatUpper_ShouldReturnTrue()
+        {
+            bool result = validations.passWord_Validation("Bhagyalaxmi");
+            Assert.IsTrue(result);
+        }
     }
 }
 
