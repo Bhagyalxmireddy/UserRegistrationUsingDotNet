@@ -10,7 +10,7 @@ namespace UserRegistration
         private const string NAME_PATTERN = "^[A-Z]{1}[a-zA-Z]{2,}$";
         private const string EMAIL_PATTERN = "^[a-zA-Z0-9]+(.[a-zA-Z0-9]+)*@[a-zA-Z]+.[a-zA-Z]{2,4}(.[a-zA-Z]{2,2})?$";
         private const string MOBILENUMBER_PATTERN = "(^[0-9]{1,3}[ ]+)?[6-9]+[0-9]{9}$";
-        private const string PASSWORD_PATTERN = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,20}";
+        private const string PASSWORD_PATTERN = "^(?=.*[0-9])" + "(?=.*[a-z])(?=.*[A-Z])" + "(?=.*[@#$%^&+=])" + "(?=\\S+$).{8,}$";
         public bool firstName_Validation(String firstName)
         {
             if (Regex.IsMatch(firstName, NAME_PATTERN))
