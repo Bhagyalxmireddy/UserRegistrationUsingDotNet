@@ -84,7 +84,36 @@ namespace UserRegistrationTest
         {
             bool result = validations.email_Validation("abc@gmail.in.");
             Assert.IsFalse(result);
-
+        }
+        [TestMethod]
+        public void givenMoblieNumber_WhenProper_ShouldReturnTrue()
+        {
+            bool result = validations.mobileNumber_Validation("91 8464096496");
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void givenMoblieNumber_WhenProperWithOutCountryCode_ShouldReturnTrue()
+        {
+            bool result = validations.mobileNumber_Validation("8464096496");
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void givenMoblieNumber_WhenNotProper_ShouldReturnFalse()
+        {
+            bool result = validations.mobileNumber_Validation("846409649");
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void givenMoblieNumber_WhenNotProperWithChar_ShouldReturnFalse()
+        {
+            bool result = validations.mobileNumber_Validation("846409649aa");
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void givenMoblieNumber_WhenNotProperWithSplChar_ShouldReturnFalse()
+        {
+            bool result = validations.mobileNumber_Validation("846409649@");
+            Assert.IsFalse(result);
         }
     }
 }
