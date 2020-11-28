@@ -115,6 +115,24 @@ namespace UserRegistrationTest
             bool result = validations.mobileNumber_Validation("846409649@");
             Assert.IsFalse(result);
         }
+        [TestMethod]
+        public void givenPassWord_WhenProper_ShouldReturnTure()
+        {
+            bool result = validations.passWord_Validation("bhagyalaxmi");
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void givenPassWord_WhenNotProper_ShouldReturnFalse()
+        {
+            bool result = validations.passWord_Validation("bhagya");
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void givenPassWord_WhenNull_ShouldReturnFalse()
+        {
+            bool result = validations.passWord_Validation("");
+            Assert.IsFalse(result);
+        }
     }
 }
 
