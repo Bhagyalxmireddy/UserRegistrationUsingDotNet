@@ -136,7 +136,38 @@ namespace UserRegistrationTest
         [TestMethod]
         public void givenPassWord_WhenWithOneAtleatUpper_ShouldReturnTrue()
         {
-            bool result = validations.passWord_Validation("Bhagyalaxmi1");
+            bool result = validations.passWord_Validation("Bhagyalaxmi");
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void givenPassWord_WhenWithAtleastOneNumber_ShouldReturnTrue()
+        {
+            bool result = validations.passWord_Validation("Bhagyalaxmi1@");
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void givenPassWod_WhenWithOutSplChar_ShouldReturnFalse()
+        {
+            bool result = validations.passWord_Validation("Bhagyalaxmi123");
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void givenPassWod_WhenWithOutNumber_ShouldReturnFalse()
+        {
+            bool result = validations.passWord_Validation("Bhagyalaxmi@");
+            Assert.IsFalse(result);
+        }
+          [TestMethod]
+        public void givenPassWod_WhenOutUpperCase_ShouldReturnFalse()
+        {
+            bool result = validations.passWord_Validation("bhagyalaxmi@123");
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void givenPassWord_WhenProperCase_ShouldReturnTrue()
+        {
+
+            bool result = validations.passWord_Validation("Bhagyalaxmi@123");
             Assert.IsTrue(result);
         }
     }
