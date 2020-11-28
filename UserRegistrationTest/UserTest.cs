@@ -116,10 +116,10 @@ namespace UserRegistrationTest
             Assert.IsFalse(result);
         }
         [TestMethod]
-        public void givenPassWord_WhenProper_ShouldReturnTure()
+        public void givenPassWord_WhenWithOutUpperCase_ShouldReturnFalse()
         {
             bool result = validations.passWord_Validation("bhagyalaxmi");
-            Assert.IsTrue(result);
+            Assert.IsFalse(result);
         }
         [TestMethod]
         public void givenPassWord_WhenNotProper_ShouldReturnFalse()
@@ -136,7 +136,7 @@ namespace UserRegistrationTest
         [TestMethod]
         public void givenPassWord_WhenWithOneAtleatUpper_ShouldReturnTrue()
         {
-            bool result = validations.passWord_Validation("Bhagyalaxmi");
+            bool result = validations.passWord_Validation("Bhagyalaxmi1");
             Assert.IsTrue(result);
         }
     }
