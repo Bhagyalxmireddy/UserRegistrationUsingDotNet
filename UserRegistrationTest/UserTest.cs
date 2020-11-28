@@ -67,6 +67,25 @@ namespace UserRegistrationTest
             bool result = validations.lastName_Validation("");
             Assert.IsFalse(result);
         }
+        [TestMethod]
+        public void givenEmailAddress_WhenProper_ShouldReturnTure()
+        {
+            bool result = validations.email_Validation("abc@gmail.com");
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void givenEmailAddress_WhenWithContiuneSplChar_ShouldReturnFalse()
+        {
+            bool result = validations.email_Validation("abc@.gmail.com");
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void givenEmailAddress_WhenNotProper_ShouldReturnFalse()
+        {
+            bool result = validations.email_Validation("abc@gmail.in.");
+            Assert.IsFalse(result);
+
+        }
     }
 }
 
