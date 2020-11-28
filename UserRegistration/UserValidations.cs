@@ -14,5 +14,11 @@ namespace UserRegistration
                 return true;
             return false;
         }
+        public bool lastName_Validation(String lastName)
+        {
+            if (Regex.IsMatch(lastName, NAME_PATTERN))
+                return true;
+            return false;
+        }
     }
 }

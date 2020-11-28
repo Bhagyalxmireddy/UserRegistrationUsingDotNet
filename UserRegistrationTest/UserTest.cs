@@ -37,6 +37,36 @@ namespace UserRegistrationTest
             bool result = validations.firstName_Validation("");
             Assert.IsFalse(result);
         }
+        [TestMethod]
+        public void givenLastName_WhenProper_ShouldReturnTrue()
+        {
+            bool result = validations.lastName_Validation("BhagyaLaxmi");
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void givenLastName_WhenHaveSplChar_ShouldReturnFalse()
+        {
+            bool result = validations.lastName_Validation("Bh@gi");
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void givenLastName_WhenHaveNum_ShouldReturnFalse()
+        {
+            bool result = validations.lastName_Validation("Bhagi111");
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void givenLastName_WhenHaveSplCharAndNum_ShouldReturnFalse()
+        {
+            bool result = validations.lastName_Validation("Bh@gi11");
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void givenLastName_WhenHaveNull_ShouldReturnFalse()
+        {
+            bool result = validations.lastName_Validation("");
+            Assert.IsFalse(result);
+        }
     }
 }
 
