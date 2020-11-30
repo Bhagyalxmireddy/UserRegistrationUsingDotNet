@@ -79,7 +79,7 @@ namespace UserRegistrationTest
                 bool result = validations.firstName_Validation("Bh@gi11");
             }catch(UserRegistrationExceptions e)
             {
-                Assert.AreEqual("firstName should not contain the splCharacteres",e.Message);
+                Assert.AreEqual("firstName should not conatin any number", e.Message);
             }
            
         }
@@ -131,7 +131,7 @@ namespace UserRegistrationTest
         {
             try
             {
-                bool result = validations.firstName_Validation("bh");
+                bool result = validations.lastName_Validation("bh");
             }
             catch (UserRegistrationExceptions e)
             {
@@ -146,7 +146,7 @@ namespace UserRegistrationTest
         {
             try
             {
-                bool result = validations.firstName_Validation("bhagi");
+                bool result = validations.lastName_Validation("bhagi");
             }
             catch (UserRegistrationExceptions e)
             {
@@ -165,7 +165,7 @@ namespace UserRegistrationTest
             }
             catch (UserRegistrationExceptions e)
             {
-                Assert.AreEqual("lastName should Contain with uppercase",e.Message);
+                Assert.AreEqual("lastName should not contain the splCharacteres", e.Message);
             }
         }
         /// <summary>
@@ -195,7 +195,7 @@ namespace UserRegistrationTest
             }
             catch (UserRegistrationExceptions e)
             {
-                Assert.AreEqual("lastName should not contain the splCharacteres", e.Message);
+                Assert.AreEqual("lastName should not conatin any number", e.Message);
             }
         }
         /// <summary>
@@ -258,8 +258,15 @@ namespace UserRegistrationTest
         [TestMethod]
         public void givenEmailAddress_WhenNotProper_ShouldReturnFalse()
         {
-            bool result = validations.email_Validation("abc@gmail.in.");
-            Assert.IsFalse(result);
+
+            try
+            {
+                bool result = validations.email_Validation("abc@gmail.in.");
+            }
+            catch (UserRegistrationExceptions e)
+            {
+                Assert.AreEqual("email should not have Continues splchar", e.Message);
+            }
         }
         /// <summary>
         /// givenMoblieNumber_WhenProper_ShouldReturnTrue
@@ -279,6 +286,13 @@ namespace UserRegistrationTest
             bool result = validations.mobileNumber_Validation("8464096496");
             Assert.IsTrue(result);
         }
+        [TestMethod]
+        public void givenMobileNumber_WhenProper_ShouldReturnTrue()
+        {
+                bool result = validations.mobileNumber_Validation("6932584107");
+            Assert.IsTrue(result);
+            
+        }
         /// <summary>
         /// givenMoblieNumber_WhenNotProper_ShouldReturnFalse
         /// </summary>
@@ -291,7 +305,7 @@ namespace UserRegistrationTest
             }
             catch (UserRegistrationExceptions e)
             {
-                Assert.AreEqual("MoblieNumber Should Not be Less the 10 numbers", e.Message);
+                Assert.AreEqual("There should be a space inbetween the mobile number", e.Message);
             }
         }
         /// <summary>
@@ -306,7 +320,7 @@ namespace UserRegistrationTest
             }
             catch (UserRegistrationExceptions e)
             {
-                Assert.AreEqual("There should be a space inbetween the mobile number", e.Message);
+                Assert.AreEqual("Mobile Number should not contain splchar and spaces in between number", e.Message);
             }
         }
         /// <summary>
@@ -336,7 +350,7 @@ namespace UserRegistrationTest
             }
             catch (UserRegistrationExceptions e)
             {
-                Assert.AreEqual("Mobile Number should not contain splchar", e.Message);
+                Assert.AreEqual("Mobile Number should not contain splchar and spaces in between number", e.Message);
             }
         }
         [TestMethod]
@@ -348,7 +362,7 @@ namespace UserRegistrationTest
             }
             catch (UserRegistrationExceptions e)
             {
-                Assert.AreEqual("password should have atleast one lower case", e.Message);
+                Assert.AreEqual("password should have atleast one upper case", e.Message);
             }
         }
         /// <summary>
@@ -497,8 +511,15 @@ namespace UserRegistrationTest
         [DataRow("abc@gmail.com.aa.au")]
         public void givenEmails_WithMultipleInputs_WithoutProper_ShouldReturnFalse(string email)
         {
-            bool result = validations.email_Validation(email);
-            Assert.IsFalse(result);
+            bool result = false;
+            try
+            {
+                result = validations.email_Validation(email);
+            }
+            catch (UserRegistrationExceptions e)
+            {
+                Assert.IsFalse(result);
+            }
         }
     }
 }

@@ -38,27 +38,30 @@ namespace UserRegistration
             {
                 if(result == false)
                 {
+                    if (firstName.Equals(string.Empty))
+                        throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_EMPTY,
+                                                             "firstName should Not be Empty");
                     if (firstName.Length < 3)
                         throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_LESSTHAN_MINCHAR, 
                                                               "firstName should be min of 3 char");
-                    if (firstName.Equals(string.Empty))
-                        throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_EMPTY, 
-                                                             "firstName should Not be Empty");
                     if (firstName.Any(char.IsDigit))
                         throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_NUMBER,
                                                              "firstName should not conatin any number");
-                    if (firstName.Any(char.IsLetterOrDigit))
-                        throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_SPECIAL_CHARACTER,
-                                                              "firstName should not contain the splCharacteres");
                     if (!char.IsUpper(firstName[0]))
                         throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_LOWERCASE,
                                                              "firstName should start with uppercase");
+                    if (firstName.Any(char.IsLetterOrDigit))
+                        throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_SPECIAL_CHARACTER,
+                                                              "firstName should not contain the splCharacteres");
+                   
                 }
-            }catch(UserRegistrationExceptions e)
-            {
-                Console.WriteLine(e.Message);
-            }
                 return result;
+            }
+            catch(UserRegistrationExceptions e)
+            {
+                throw e;
+            }
+               
         }
         /// <summary>
         /// Last name validation.
@@ -83,27 +86,29 @@ namespace UserRegistration
                 {
                     if(result == false)
                     {
+                        if (lastName.Equals(string.Empty))
+                            throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_EMPTY,
+                                                            "lastName should Not be Empty");
                         if (lastName.Length < 3)
                             throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_LESSTHAN_MINCHAR,
                                                                 "lastName should be min of 3 char");
-                        if (lastName.Equals(string.Empty))
-                            throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_EMPTY,
-                                                                "lastName should Not be Empty");
-                        if (lastName.Any(char.IsDigit))
-                        throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_NUMBER,
-                                                             "lastName should not conatin any number");
-                        if (lastName.Any(char.IsLetterOrDigit))
-                            throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_SPECIAL_CHARACTER,
-                                                                "lastName should not contain the splCharacteres");
                         if (!char.IsUpper(lastName[0]))
                             throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_LOWERCASE,
-                                                                "lastName should Contain with uppercase");
+                                                       "lastName should start with uppercase");
+                        if (lastName.Any(char.IsDigit))
+                             throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_NUMBER,
+                                                             "lastName should not conatin any number");
+                        
+                        if (lastName.Any(char.IsLetterOrDigit))
+                            throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_SPECIAL_CHARACTER,
+                                                                "lastName should not contain the splCharacteres");                        
                     }
+                return result;
                 }catch(UserRegistrationExceptions e)
                 {
-                    Console.WriteLine(e.Message);
+                throw e;
                 }
-                return result;
+               
         }
         /// <summary>
         /// Emails the validation.
@@ -128,13 +133,12 @@ namespace UserRegistration
                     if (email.Contains(string.Empty))
                         throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_EMPTY,
                             "email should not be empty");
-
                 }
+                return result;
             } catch (UserRegistrationExceptions e)
             {
-                Console.WriteLine(e.Message);
+                throw e;
             }
-            return result;
         }
         /// <summary>
         /// Mobiles the number validation.
@@ -157,27 +161,32 @@ namespace UserRegistration
             bool result = Regex.IsMatch(mobileNumber, MOBILENUMBER_PATTERN);
             try
             {
-                if (mobileNumber.Length > 13)
-                    throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_LESSTHAN_MINUMUM_NUMBER,
-                        "MoblieNumber Should Not be Less the 10 numbers");
-                if (mobileNumber.Equals(string.Empty))
-                    throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_EMPTY,
-                        "Mobile Number should not be empty");
-                if (!mobileNumber.Any(char.IsWhiteSpace))
-                    throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.SHOULDNOTENTER_SPACE_INMOBILENUMBER,
-                                    "There should be a space inbetween the mobile number");
-                if (mobileNumber.Any(char.IsLetter))
-                    throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_CHAR,
-                        "Mobile Number should not contain characteres");
-                if (mobileNumber.Any(char.IsLetterOrDigit))
-                    throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_SPECIAL_CHARACTER,
-                       "Mobile Number should not contain splchar");
+                if (result == false)
+                {
+                    if (mobileNumber.Length > 13)
+                        throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_LESSTHAN_MINUMUM_NUMBER,
+                            "MoblieNumber Should Not be Less the 10 numbers");
+                    if (mobileNumber.Equals(string.Empty))
+                        throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_EMPTY,
+                            "Mobile Number should not be empty");
+                   
+                    if (mobileNumber.Any(char.IsLetter))
+                        throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_CHAR,
+                            "Mobile Number should not contain characteres");
+                    if (mobileNumber.Any(char.IsLetterOrDigit))
+                        throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_SPECIAL_CHARACTER,
+                           "Mobile Number should not contain splchar and spaces in between number");
+                    if (!mobileNumber.Any(char.IsWhiteSpace))
+                        throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.SHOULDNOTENTER_SPACE_INMOBILENUMBER,
+                                        "There should be a space inbetween the mobile number");
+                }
+                return result;
             }
             catch (UserRegistrationExceptions e)
             {
-                Console.WriteLine(e.Message);
+                throw e;
             }
-                return result;
+               
         }
         /// <summary>
         /// Passes the word validation.
@@ -204,31 +213,34 @@ namespace UserRegistration
             {
                 if (result == false)
                 {
+                    if (passWord.Equals(string.Empty))
+                        throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_EMPTY,
+                           "password should not be empty");
                     if (passWord.Length < 8)
                         throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_LESSTHAN_MINCHAR,
-                            "password should be not less than 8 char");
-                    if (!passWord.Any(char.IsDigit))
-                        throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_WITHOUT_NUMBER,
-                            "password should be have atleast one numbner");
-                    if (!passWord.Any(char.IsLetterOrDigit))
-                        throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_WITHOUT_SPLCHAR,
-                            "password should have exact one splchar");
+                            "password should be not less than 8 char");                 
+                   
                     if (!passWord.Any(char.IsLower))
                         throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_WITHOUT_LOWERCASE,
                             "password should have atleast one lower case");
                     if (!passWord.Any(char.IsUpper))
                         throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_WITHOUT_UPPERCASE,
                             "password should have atleast one upper case");
-                    if (passWord.Equals(string.Empty))
-                        throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_EMPTY,
-                           "password should not be empty");
+                    if (!passWord.Any(char.IsDigit))
+                        throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_WITHOUT_NUMBER,
+                            "password should be have atleast one numbner");
+                    if (!passWord.Any(char.IsLetterOrDigit))
+                        throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.ENTERED_WITHOUT_SPLCHAR,
+                            "password should have exact one splchar");
+
                 }
+                return result;
             }
             catch (UserRegistrationExceptions e)
             {
-                Console.WriteLine(e.Message);
+                throw e;
              }
-            return result;
+          
             
         }
     }
