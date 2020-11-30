@@ -23,14 +23,14 @@ namespace UserRegistration
         /// <summary>
         /// Declaring the variables
         /// </summary>
-        private ExceptionType eNTERED_LESSTHAN_MINCHAR;
-        private string message;
+        public ExceptionType eNTERED_LESSTHAN_MINCHAR;
+        public string message;
         /// <summary>
         /// Initializes a new instance of the <see cref="UserRegistrationExceptions"/> class.
         /// </summary>
         /// <param name="eNTERED_LESSTHAN_MINCHAR">The e ntered lessthan minchar.</param>
         /// <param name="message">The message.</param>
-        public UserRegistrationExceptions(ExceptionType eNTERED_LESSTHAN_MINCHAR, string message)
+        public UserRegistrationExceptions(ExceptionType eNTERED_LESSTHAN_MINCHAR, string message):base(message)
         {
             this.eNTERED_LESSTHAN_MINCHAR = eNTERED_LESSTHAN_MINCHAR;
             this.message = message;
