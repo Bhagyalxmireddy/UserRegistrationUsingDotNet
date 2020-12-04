@@ -521,6 +521,19 @@ namespace UserRegistrationTest
                 Assert.IsFalse(result);
             }
         }
+        [TestMethod]
+        public void validating_FirstName()
+        {
+            try
+            {
+                UserValidationUsingLambda validate = new UserValidationUsingLambda();
+                bool result = validate.firstName_Validation("bh");
+            }
+            catch (UserRegistrationExceptions e)
+            {
+                Assert.AreEqual("firstName should be min of 3 char", e.Message);
+            }
+        }
     }
 }
 

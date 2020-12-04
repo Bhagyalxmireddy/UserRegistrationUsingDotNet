@@ -14,7 +14,7 @@ namespace UserRegistration
         /// FirstName
         /// </value>
         [Required(ErrorMessage = "Name{0} is requried")]
-        [RegularExpression("^[A-Z]{1}[a-zA-Z]{2,}$",ErrorMessage = "Entered FirstName is valid")]
+        [RegularExpression("^[A-Z]{1}[a-zA-Z]{2,}$",ErrorMessage ="Please enter valid firstName")]
         [StringLength(100,MinimumLength =3,ErrorMessage = "FirstName should contains atleast 3 characteres")]
         public string firstName { get; set; }
 
@@ -25,7 +25,7 @@ namespace UserRegistration
         /// LastName
         /// </value>
         [Required(ErrorMessage = "Name{0} is requried")]
-        [RegularExpression("^[A-Z]{1}[a-zA-Z]{2,}$", ErrorMessage = "Entered LastName is valid")]
+        [RegularExpression("^[A-Z]{1}[a-zA-Z]{2,}$" ,ErrorMessage ="please enter a Valid Lastname")]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "LastName should contains atleast 3 characteres")]
         public string lastName { get; set; }
 
@@ -36,7 +36,7 @@ namespace UserRegistration
         /// phoneNumber
         /// </value>
         [Required(ErrorMessage = "phoneNumber{0} is requried")]
-        [RegularExpression("(^[0-9]{1,3}[ ]+)?[6-9]+[0-9]{9}$",ErrorMessage = "Entered PhoneNumber is valid")]
+        [RegularExpression("(^[0-9]{1,3}[ ]+)?[6-9]+[0-9]{9}$",ErrorMessage = "Entered PhoneNumber is Invalid")]
         [StringLength(13,MinimumLength =10,ErrorMessage = "MobileNumber should contain atleast country code")]
         public string phoneNumber { get; set; }
 
@@ -47,7 +47,7 @@ namespace UserRegistration
         /// email
         /// </value>
         [Required(ErrorMessage = "Email{0} is requried")]
-        [RegularExpression("^[a-zA-Z0-9+_-]+(?:\\.[a-zA-Z0-9_-]+)*@[a-zA-Z0-9]+(?:\\.[a-zA-Z]{2,}){1,2}$",ErrorMessage = "Entered EmailAddress is valid")]
+        [RegularExpression("^[a-zA-Z0-9+_-]+(?:\\.[a-zA-Z0-9_-]+)*@[a-zA-Z0-9]+(?:\\.[a-zA-Z]{2,}){1,2}$",ErrorMessage = "Entered EmailAddress is invalid")]
         public string email { get; set; }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace UserRegistration
         /// password
         /// </value>
         [Required(ErrorMessage = "Password{0} is requried")]
-        [RegularExpression("^(?=.*[0-9])" + "(?=.*[a-z])(?=.*[A-Z])" + "(?=.*[@#$%^&+=])" + "(?=\\S+$).{8,}$",ErrorMessage ="Entered password is valid")]
+        [RegularExpression("^(?=.*[0-9])" + "(?=.*[a-z])(?=.*[A-Z])" + "(?=.*[@#$%^&+=])" + "(?=\\S+$).{8,}$",ErrorMessage ="Entered password is invalid")]
         [StringLength(20,MinimumLength = 8,ErrorMessage ="password should contain atleast 8 characters")]
         public string password { get; set; }
     }
